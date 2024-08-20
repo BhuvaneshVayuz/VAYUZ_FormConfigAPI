@@ -30,6 +30,14 @@ export function validateFormConfig(data) {
                 'string.empty': 'Heading text is required.'
             }),
 
+        logoLink: Joi.string()
+            .uri()
+            .optional()
+            .messages({
+                'string.uri': 'Logo link must be a valid URL.',
+                'string.empty': 'Logo link is required.'
+            }),
+
         configurations: Joi.array().items(
             Joi.object({
                 fieldName: Joi.string()
@@ -46,7 +54,7 @@ export function validateFormConfig(data) {
                     .valid('text', 'email', 'password', 'number', 'date', 'checkbox', 'radio', 'textarea')
                     .required()
                     .messages({
-                        'any.only': 'Type must be one of string, number, email, password, boolean.',
+                        'any.only': 'Type must be one of string, number, email, password, date, checkbox, radio, textarea.',
                         'string.empty': 'Type is required.'
                     }),
 
@@ -61,6 +69,14 @@ export function validateFormConfig(data) {
             .messages({
                 'array.base': 'Configurations must be an array of objects.',
                 'array.empty': 'Configurations are required.'
+            }),
+
+        fieldsLength: Joi.number()
+            .integer()
+            .required()
+            .messages({
+                'number.base': 'Fields length must be a number.',
+                'any.required': 'Fields length is required.'
             }),
 
     }).options({ abortEarly: false });

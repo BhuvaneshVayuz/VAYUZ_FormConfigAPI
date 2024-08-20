@@ -17,6 +17,10 @@ const formConfigSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    logoLink: {
+        type: String,
+        required: false,
+    },
     configurations: [{
         fieldName: {
             type: String,
