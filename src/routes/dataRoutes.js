@@ -17,7 +17,7 @@ router.get('/:url', handleGetFormConfigsByUrl);
 
 router.get('/:url/:name', handleGetFormConfigByUrlAndName);
 
-router.get('/:id', handleGetFormConfigById);
+router.get('/id/:id', handleGetFormConfigById);
 
 router.post('/', handleAddFormConfig);
 
