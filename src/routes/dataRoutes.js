@@ -5,7 +5,8 @@ import {
     handleGetFormConfigByUrlAndName,
     handleAddFormConfig,
     handleDeleteFormConfig,
-    handleEditFormConfig
+    handleEditFormConfig,
+    handleGetFormConfigById
 } from '../controllers/formConfigController.js';
 
 const router = express.Router();
@@ -15,6 +16,8 @@ router.get('/', handleGetAllFormConfigs);
 router.get('/:url', handleGetFormConfigsByUrl);
 
 router.get('/:url/:name', handleGetFormConfigByUrlAndName);
+
+router.get('/:id', handleGetFormConfigById);
 
 router.post('/', handleAddFormConfig);
 

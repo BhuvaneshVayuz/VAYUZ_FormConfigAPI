@@ -35,6 +35,16 @@ export const handleGetFormConfigByUrlAndName = handleError(async (req, res) => {
         data: dataRes
     })
 })
+export const handleGetFormConfigById = handleError(async (req, res) => {
+    const { id } = req.params
+
+    const dataRes = await getAllFormByFilterService({ id })
+    res.status(200).json({
+        status: 200,
+        message: 'success',
+        data: dataRes
+    })
+})
 
 
 export const handleAddFormConfig = handleError(async (req, res) => {
