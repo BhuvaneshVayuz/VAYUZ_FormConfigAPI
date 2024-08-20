@@ -13,11 +13,12 @@ const router = express.Router();
 
 
 router.get('/', handleGetAllFormConfigs);
+
+router.get('/id/:id', handleGetFormConfigById);
 router.get('/:url', handleGetFormConfigsByUrl);
 
 router.get('/:url/:name', handleGetFormConfigByUrlAndName);
 
-router.get('/id/:id', handleGetFormConfigById);
 
 router.post('/', handleAddFormConfig);
 
