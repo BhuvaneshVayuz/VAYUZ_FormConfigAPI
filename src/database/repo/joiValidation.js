@@ -70,15 +70,6 @@ export function validateFormConfig(data) {
                 'array.base': 'Configurations must be an array of objects.',
                 'array.empty': 'Configurations are required.'
             }),
-
-        fieldsLength: Joi.number()
-            .integer()
-            .required()
-            .messages({
-                'number.base': 'Fields length must be a number.',
-                'any.required': 'Fields length is required.'
-            }),
-
     }).options({ abortEarly: false });
 
     return joiSchema.validate(data);
