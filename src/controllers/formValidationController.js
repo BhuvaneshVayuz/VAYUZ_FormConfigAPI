@@ -115,5 +115,6 @@ export const handleDeleteFormValidation = handleError(async (req, res) => {
     res.status(200).json({
         status: 200,
         message: 'Form validation deleted successfully',
+        data: deleteResult
     });
 });
