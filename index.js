@@ -4,6 +4,9 @@ import dotenv from 'dotenv'
 import dataRoutes from './src/routes/dataRoutes.js'
 import cookieSession from "cookie-session";
 import cors from "cors";
+import { errorResponse } from "./src/middleware/errorResponse.js";
+import stylingRoutes from "./src/routes/stylingRoutes.js";
+import validationRoutes from "./src/routes/validationRoutes.js";
 
 
 
@@ -39,9 +42,11 @@ app.get('/', (req, res) => {
     res.send('hello')
 })
 
-app.use('/data', dataRoutes)
+// app.use('/data', dataRoutes)
+app.use('/style', stylingRoutes)
+app.use('/validations', validationRoutes)
 
-
+app.use(errorResponse)
 // catch routes
 app.use('*', (req, res) => {
     res.status(404).send({ message: 'Route not found' });
