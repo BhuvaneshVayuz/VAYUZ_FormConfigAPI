@@ -77,7 +77,6 @@ export function validateFormConfig(data) {
 
 
 
-
 export function validateStylingConfig(data) {
     const joiSchema = Joi.object({
         url: Joi.string()
@@ -100,12 +99,14 @@ export function validateStylingConfig(data) {
 
         componentLink: Joi.string()
             .uri()
+            .allow('')
             .optional()
             .messages({
                 'string.uri': 'Component link must be a valid URL.'
             }),
 
         heading: Joi.string()
+            .allow('')
             .optional()
             .messages({
                 'string.empty': 'Heading text is optional but must be a string.'
@@ -113,6 +114,7 @@ export function validateStylingConfig(data) {
 
         logo: Joi.string()
             .uri()
+            .allow('')
             .optional()
             .messages({
                 'string.uri': 'Logo link must be a valid URL.'
