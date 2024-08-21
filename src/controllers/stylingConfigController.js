@@ -108,5 +108,6 @@ export const handleDeleteStylingConfig = handleError(async (req, res) => {
     res.status(200).json({
         status: 200,
         message: 'Styling configuration deleted successfully',
+        data: deleteResult
     });
 });
