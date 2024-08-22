@@ -118,6 +118,8 @@ export const handleDeleteStylingConfig = handleError(async (req, res) => {
         };
     }
 
+    await FormValidation.deleteMany({ url: deleteResult.url });
+
     res.status(200).json({
         status: 200,
         message: 'Styling configuration deleted successfully',

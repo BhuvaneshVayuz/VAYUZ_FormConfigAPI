@@ -159,7 +159,6 @@ export const handleEditFormValidation = handleError(async (req, res) => {
     });
 });
 
-
 export const handleDeleteFormValidation = handleError(async (req, res) => {
     const { id } = req.params;
 
@@ -173,9 +172,16 @@ export const handleDeleteFormValidation = handleError(async (req, res) => {
         };
     }
 
+    const stylingConfigs = await checkIfStylingConfigExists({ 'formIds.id': id });
+
+    if (stylingConfigs.length > 0) {
+        config.formIds = config.formIds.filter(form => form.id != id);
+        await config.save();
+    }
+
     res.status(200).json({
         status: 200,
-        message: 'Form validation deleted successfully',
+        message: 'Form validation deleted successfully and associated styling configs updated',
         data: deleteResult
     });
 });
