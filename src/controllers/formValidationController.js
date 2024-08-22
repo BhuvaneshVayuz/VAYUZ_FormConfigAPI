@@ -172,7 +172,9 @@ export const handleDeleteFormValidation = handleError(async (req, res) => {
         };
     }
 
-    const stylingConfigs = await checkIfStylingConfigExists({ 'formIds.id': id });
+    const stylingConfigs = await checkIfStylingConfigExists({
+        formIds: { $elemMatch: { id } }
+    });
 
     if (stylingConfigs.length > 0) {
         config.formIds = config.formIds.filter(form => form.id != id);
