@@ -174,10 +174,8 @@ export const handleDeleteFormValidation = handleError(async (req, res) => {
 
     const stylingConfigs = await checkIfStylingConfigExists({ url: deleteResult.url });
 
-    if (stylingConfigs.length > 0) {
-        config.formIds = config.formIds.filter(form => form.id != id);
-        await config.save();
-    }
+    stylingConfigs.formIds = stylingConfigs.formIds.filter(form => form.id != id);
+    await stylingConfigs.save();
 
     res.status(200).json({
         status: 200,
