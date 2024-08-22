@@ -7,12 +7,12 @@ export async function checkIfFormConfigExists(url, name) {
     return response;
 }
 
-export async function checkIfStylingConfigExists(url) {
-    const response = await StylingConfig.findOne({ url });
+export async function checkIfStylingConfigExists(filters) {
+    const response = await StylingConfig.findOne(filters);
     return response;
 }
 
-export async function checkIfFormValidationExists(url, name) {
-    const response = await FormValidation.findOne({ url, name });
+export async function checkIfFormValidationExists(filters) {
+    const response = await FormValidation.findOne(filters);
     return response;
 }

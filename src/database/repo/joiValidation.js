@@ -76,9 +76,9 @@ export function validateFormConfig(data) {
 }
 
 
-
 export function validateStylingConfig(data) {
     const joiSchema = Joi.object({
+
         url: Joi.string()
             .uri()
             .required()
@@ -87,43 +87,49 @@ export function validateStylingConfig(data) {
                 'string.empty': 'URL is required.'
             }),
 
-        path: Joi.string()
-            .min(3)
-            .max(100)
+        bundles: Joi.array()
+            .items(Joi.object({
+                path: Joi.string()
+                    .min(3)
+                    .max(100)
+                    .required()
+                    .messages({
+                        'string.min': 'Path must be at least 3 characters long.',
+                        'string.max': 'Path must be at most 100 characters long.',
+                        'string.empty': 'Path is required.'
+                    }),
+
+                component: Joi.string()
+                    .required()
+                    .allow('')
+                    .messages({
+                        'string.empty': 'Component is required.'
+                    }),
+
+                heading: Joi.string()
+                    .required()
+                    .allow('')
+                    .messages({
+                        'string.empty': 'Heading is required.'
+                    }),
+
+                logo: Joi.string()
+                    .required()
+                    .allow('')
+                    .messages({
+                        'string.uri': 'Logo must be a valid URI.',
+                        'string.empty': 'Logo is required.'
+                    })
+            }))
             .required()
             .messages({
-                'string.min': 'Path must be at least 3 characters long.',
-                'string.max': 'Path must be at most 100 characters long.',
-                'string.empty': 'Path is required.'
+                'array.base': 'Bundles must be an array of bundle objects.',
+                'array.empty': 'Bundles are required.'
             }),
-
-        componentLink: Joi.string()
-            .uri()
-            .allow('')
-            .optional()
-            .messages({
-                'string.uri': 'Component link must be a valid URL.'
-            }),
-
-        heading: Joi.string()
-            .allow('')
-            .optional()
-            .messages({
-                'string.empty': 'Heading text is optional but must be a string.'
-            }),
-
-        logo: Joi.string()
-            .uri()
-            .allow('')
-            .optional()
-            .messages({
-                'string.uri': 'Logo link must be a valid URL.'
-            })
     }).options({ abortEarly: false });
 
     return joiSchema.validate(data);
 }
-
 
 
 
